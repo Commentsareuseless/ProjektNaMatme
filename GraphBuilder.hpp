@@ -14,14 +14,16 @@ public:
      * @return Returns empty graph in case of non-existing file
      *          or file with incorrect syntax
      */
-    static Graph&& CreateGraphFromTxt(const std::string& path);
+    static bool CreateGraphFromTxt(
+        const std::string& path,
+        Graph& out_graphToFill);
 
 private:
     GraphBuilder() = delete;
     GraphBuilder(GraphBuilder&) = delete;
     GraphBuilder(GraphBuilder&&) = delete;
 
-    static std::string ReadNextLine(std::ifstream& file);
+    static bool ReadNextLine(std::ifstream& file, std::string& out_readLine);
     static bool IsComment(const std::string& textLine);
 
 };

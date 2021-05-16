@@ -2,7 +2,7 @@ objs = Graph.o main.o Node.o
 
 
 AstPathFinder: ${objs}
-	g++  ${objs} -o TestMatmy.out
+	g++  ${objs} -o TestMatmy.out -Wall
 
 main.o:
 	g++ main.cpp -c

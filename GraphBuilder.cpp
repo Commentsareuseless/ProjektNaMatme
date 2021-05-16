@@ -9,27 +9,77 @@
  */
 
 #include "GraphBuilder.hpp"
+#include "Debug.hpp"
 
 #include <iostream>
 
-Graph&& GraphBuilder::CreateGraphFromTxt(const std::string& path)
+bool GraphBuilder::CreateGraphFromTxt(const std::string& path, Graph& out_graphToFill)
 {
     std::ifstream fileToParse{path};
+    std::string readLine{};
+
+    unsigned matrixRow{0}, matrixCol{0};
+    constexpr char matrixBeginChar = '[';
+    constexpr char matrixEndChar = ']';
+    constexpr char separator = ' ';
 
     if (!fileToParse)
     {
-        std::cerr << "[ERROR]\t Could not open file! (most likely doesn't exist)\n ";
+        LOG_error("Could not open file! (most likely doesn't exist)");
+        return false;
+    }
+
+    while (ReadNextLine(fileToParse, readLine))
+    {
+        if (IsComment(readLine)) { continue; }
+
+        for (auto& character : readLine)
+        {
+            switch (character)
+            {
+            case matrixBeginChar:
+                continue;
+                break;
+
+            case matrixEndChar:
+                continue;
+                break;
+
+            case '0':
+                if (matrixRow == 0)
+                {
+                    out_graphToFill.AddNode();
+                }
+                break;
+
+            case '1':
+                
+                break;
+
+            default:
+                LOG_error("Inapropriate syntax");
+                return false;
+                break;
+            }
+
+            matrixCol = 0;
+        }
+        ++matrixRow;
     }
 
     fileToParse.close();
 }
 
-std::string GraphBuilder::ReadNextLine(std::ifstream& file)
+bool GraphBuilder::ReadNextLine(
+    std::ifstream& file,
+    std::string& out_readLine)
 {
-    std::string newLine{};
-    std::getline(file, newLine);
-
-    return newLine;
+    if(file)
+    {
+        std::getline(file, out_readLine);
+        return true;
+    }
+    return false;
 }
 
 bool GraphBuilder::IsComment(const std::string& textLine)

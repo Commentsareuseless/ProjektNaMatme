@@ -9,9 +9,11 @@
  */
 
 #include "Graph.hpp"
+#include "Debug.hpp"
 
 #include <utility>
 #include <cstdio>
+#include <iostream>
 
 Graph::Graph(NodeVec&& initialNodes)
 {
@@ -51,4 +53,17 @@ void Graph::AddNodes(NodeVec& nodes)
     //     printf("Element nr: %d\t %d\n", i, nod.GetID());
     //     ++i;
     // }
+}
+
+Node& Graph::GetNode(unsigned ID)
+{
+    for(auto& node : listOfNodes)
+    {
+        if(node.GetID() == ID)
+        {
+            return node;
+        }
+    }
+    LOG_error("GetNode(): Invalid ID");
+    return *listOfNodes.end();
 }

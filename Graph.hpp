@@ -23,6 +23,8 @@ public:
     void ConnectNodes(unsigned ID1, unsigned ID2);
 
     Node& GetNode(unsigned ID);
+    Node& FirstNode();
+    Node& LastNode();
 
     unsigned GraphRow() {return listOfNodes.size(); }
 private:
