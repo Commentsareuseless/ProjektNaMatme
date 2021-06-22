@@ -18,7 +18,7 @@ INCLUDES = \
 # Every file created during compilation goes here
 BUILD_DIR = build
 
-# For futrue
+# For futrue, define macros here
 # DEFS = \
 # -DDEBUG_MODE
 

@@ -26,4 +26,5 @@ private:
     static bool ReadNextLine(std::ifstream& file, std::string& out_readLine);
     static bool IsComment(const std::string& textLine);
 
+    static constexpr char commentCharacter = '#';
 };

@@ -84,8 +84,6 @@ bool GraphBuilder::ReadNextLine(
 
 bool GraphBuilder::IsComment(const std::string& textLine)
 {
-    char commentCharacter = '#';
-
     if (textLine[0] == commentCharacter) return true;
 
     return false;
