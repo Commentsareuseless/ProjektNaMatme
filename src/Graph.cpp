@@ -20,21 +20,13 @@ Graph::Graph(NodeVec&& initialNodes)
     listOfNodes = std::move(initialNodes);
 }
 
+/**
+ * @brief Creates generic node, with next available ID
+ *        and no neighbours
+ */
 void Graph::AddNode()
 {
     listOfNodes.push_back(Node());
-}
-
-void Graph::AddNodeWithNeighbours(const NodeVec& neighbours)
-{
-    Node newNode{};
-
-    for (auto& nbr : neighbours)
-    {
-        newNode.AddNeighbour(nbr.GetID());
-    }
-
-    AddNode(std::move(newNode));
 }
 
 void Graph::AddNodes(NodeVec& nodes)
@@ -45,14 +37,30 @@ void Graph::AddNodes(NodeVec& nodes)
     auto listSize = listOfNodes.size();
 
     listOfNodes.insert(iter + listSize, nodes.begin(), nodes.end());
+}
 
-    // Debug
-    // int i = 0;
-    // for (auto& nod : listOfNodes)
-    // {
-    //     printf("Element nr: %d\t %d\n", i, nod.GetID());
-    //     ++i;
-    // }
+/**
+ * @brief Connection means that edge is added to list of all edges
+ *
+ * @param ID1 ID of one node
+ * @param ID2 ID of another node
+ * @param cost "weight" of edge
+ */
+void Graph::ConnectNodes(unsigned ID1, unsigned ID2, unsigned cost)
+{
+    if (ID1 == ID2)
+    {
+        LOG_error("Given IDs are the same :(");
+        return;
+    }
+
+    if(DoesConnectionExist(ID1, ID2))
+    {
+        LOG_error("Connection already exist! ID1=" << ID1 << " ID2=" << ID2);
+        return;
+    }
+
+    edges.push_back(Edge(ID1, ID2, cost));
 }
 
 Node& Graph::GetNode(unsigned ID)
@@ -66,4 +74,21 @@ Node& Graph::GetNode(unsigned ID)
     }
     LOG_error("GetNode(): Invalid ID");
     return *listOfNodes.end();
+}
+
+Graph::Edge::Edge(unsigned _ID1, unsigned _ID2, unsigned _cost) :
+    node1(_ID1), node2(_ID2), cost(_cost)
+{}
+
+bool Graph::DoesConnectionExist(unsigned ID1, unsigned ID2)
+{
+    for(auto& edge : edges)
+    {
+        if(edge.node1 == ID1 && edge.node2 == ID2)
+            return true;
+
+        if(edge.node1 == ID2 && edge.node2 == ID1)
+            return true;
+    }
+    return false;
 }

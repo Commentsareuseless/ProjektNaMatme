@@ -11,21 +11,21 @@
 
 #if LOG_LEVEL & LVL_INFO
 #   define LOG_info(message) \
-        std::cerr << "[INFO]\t" << (message) << std::endl;
+        std::cerr << "[INFO]\t" << message << std::endl;
 #else
 #   define LOG_info(message)
 #endif
 
 #if LOG_LEVEL & LVL_DEBUG
 #   define LOG_debug(debugMessage) \
-        std::cerr << "[DEBUG]\t" << (debugMessage) << std::endl;
+        std::cerr << "[DEBUG]\t" << debugMessage << std::endl;
 #else
 #   define LOG_debug(debugMessage)
 #endif
 
 #if LOG_LEVEL & LVL_ERROR
 #   define LOG_error(errorMessage) \
-        std::cerr << "[ERROR]\t" << (errorMessage) << std::endl;
+        std::cerr << "[ERROR]\t" << errorMessage << std::endl;
 #else
 #   define LOG_error(errorMessage)
 #endif

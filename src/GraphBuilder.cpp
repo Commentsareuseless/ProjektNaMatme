@@ -53,7 +53,7 @@ bool GraphBuilder::CreateGraphFromTxt(const std::string& path, Graph& out_graphT
                 break;
 
             case '1':
-                
+
                 break;
 
             default:

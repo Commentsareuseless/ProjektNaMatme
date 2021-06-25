@@ -9,7 +9,7 @@ SOURCES = \
 src/main.cpp \
 src/Graph.cpp \
 src/GraphBuilder.cpp \
-src/Node.cpp 
+src/Node.cpp
 
 # Add include directories here
 INCLUDES = \

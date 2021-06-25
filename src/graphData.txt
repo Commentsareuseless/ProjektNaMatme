@@ -1,3 +1,16 @@
+# KomentaSZ12334365346rfezasdf amkst
+# KomentaSZ fasdbahet43 tb4ezahtynhfdg
+# to jest macierz sąsiedztwa, na diagonali powinno być zawsze 0
+# poza tym każdy element to waga danej krawędzi
+# dlatego macierz powinna być symetryczna wzgl diagonali (jak będzie nie taka jak trzeba to pokażą się błędy)
+# Jeżeli krawędź nie istnieje to -1
+# 
+#   *** Format ***
+#  | 0 N12 N13 N14 |
+#  | N21 0 N23 N24 |
+#  | N31 N32 0 N34 |
+#  | N41 N42 N43 0 |
+#
 [ 0 1 1 1
   0 0 0 1
   1 0 0 1

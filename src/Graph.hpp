@@ -9,18 +9,14 @@ class Graph
 public:
 
     Graph() = default;
+    Graph(Graph&) = delete;
     Graph(NodeVec&& initialNodes);
 
-    /**
-     * @brief Generates generic node, with next available ID
-     *        and no neighbours
-     */
     void AddNode();
     void AddNode(Node&& node) { listOfNodes.push_back(node); }
-    void AddNodeWithNeighbours(const NodeVec& neighbours);
     void AddNodes(NodeVec& nodes);
 
-    void ConnectNodes(unsigned ID1, unsigned ID2);
+    void ConnectNodes(unsigned ID1, unsigned ID2, unsigned cost = 1);
 
     Node& GetNode(unsigned ID);
     Node& FirstNode();
@@ -28,11 +24,17 @@ public:
 
     unsigned GraphRow() {return listOfNodes.size(); }
 private:
+    struct Edge
+    {
+        Edge(unsigned, unsigned , unsigned);
 
-    /**
-     * @brief Graph OWMS all nodes, this is why nodes should not
-     *        own themselves as neighbours (otherwise there will be mess :()
-     */
+        unsigned node1, node2, cost;
+    };
+    using EdgeVec = std::vector<Edge>;
+
+    bool DoesConnectionExist(unsigned ID1, unsigned ID2);
+
+    EdgeVec edges{};
     NodeVec listOfNodes{};
 };
 
