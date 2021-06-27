@@ -5,11 +5,11 @@
 
 bool Prim::run(Graph &graph) {
     for ( unsigned i = 0; i < graph.GraphRow(); i++) { //For each Node
-        LOG_debug("Prim: Node: " + std::to_string(i));
+        LOG_debug("Prim iteration: " + std::to_string(i));
         unsigned id = Prim::getMinCostNodeID(graph);
         graph.GetNode(id).SetVisited();
         for (std::map<unsigned, unsigned>& e : graph.GetNode(id).GetEdges()) {
-            LOG_debug("Prim: Node: Edge: " + std::to_string(e.first) + " - " + std::to_string(e.second));
+            LOG_debug("Prim: Node: " + std::to_string(id) + " Edge: n:" + std::to_string(e.first) + " e:" + std::to_string(e.second));
             if (!graph.GetNode(e.first).WasVisited())
             {
                 LOG_debug("Prim: Node: Edge wasn't visited");

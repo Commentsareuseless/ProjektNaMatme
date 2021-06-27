@@ -101,3 +101,17 @@ unsigned Graph::GetCostOfConnection(unsigned ID1, unsigned ID2) //returns cost, 
     }
     return 0; //aka false
 }
+
+void Graph::printEdges() {
+    LOG_debug("Edges:");
+    for(auto& e : edges) {
+        e.print();
+    }
+}
+
+void Graph::printNodes() {
+    LOG_debug("Nodes:");
+    for(auto& n : listOfNodes) {
+        n.print();
+    }
+}

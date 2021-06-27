@@ -29,6 +29,9 @@ public:
     unsigned GraphRow() { return listOfNodes.size(); }
     unsigned GetNumberOfEdges() { return edges.size(); }
 
+    void printNodes();
+    void printEdges();
+
 private:
     unsigned GetCostOfConnection(unsigned ID1, unsigned ID2);
 
