@@ -16,10 +16,10 @@ public:
     bool WasVisited() const { return wasVisitedFlag; }
 
     void SetPrevID(unsigned id) { prevID = id; }
-    unsigned GetPrevID() { return prevID; }
+    unsigned GetPrevID() const { return prevID; }
 
     void SetPrevCost(unsigned cost) { prevCost = cost; }
-    unsigned GetPrevCost() { return prevCost; }
+    unsigned GetPrevCost() const { return prevCost; }
     bool IsPrevCostWorse(unsigned newCost) { return newCost < prevCost?true:false; } //"Worse" because we need better or equal
 
     void BondEdge(unsigned edgeID, unsigned nodeID) { edges.insert(std::pair<unsigned, unsigned>(nodeID, edgeID)); }
@@ -28,9 +28,11 @@ public:
 
     std::vector<unsigned> GetEdgesIDs();
 
+    void print();
+
     ~Node() = default;
 private:
-    static unsigned idGenerator;
+    static unsigned idGenerator = 0;
 
     unsigned prevID; //TODO: change name, idk how to name it
     unsigned prevCost; //TODO: ^^

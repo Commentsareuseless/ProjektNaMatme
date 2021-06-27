@@ -14,8 +14,11 @@ public:
     unsigned GetCost() { return cost; }
 
     static unsigned GetLastID() { return idGenerator - 1; }
+
+    void print();
+
 private:
-    static unsigned idGenerator;
+    static unsigned idGenerator = 0;
     unsigned nodeID1;
     unsigned nodeID2;
     unsigned cost;

@@ -32,8 +32,12 @@ int main()
     graph.ConnectNodes(1, 3, 1);
     graph.ConnectNodes(0, 2, 1);
     graph.ConnectNodes(1, 2, 3);
+    graph.printEdges();
+    graph.printNodes();
     graph.GetNode(0).SetPrevID(0);
     graph.GetNode(0).SetPrevCost(0);
     Prim::run(graph);
     Prim::printEdgesNotInMST(graph); //expected edge 3 : node1 1 : node2 2 : cost 3
+    graph.printEdges();
+    graph.printNodes();
 }

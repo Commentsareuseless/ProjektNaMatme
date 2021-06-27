@@ -11,4 +11,3 @@ public:
 private:
     static unsigned getMinCostNodeID(Graph& graph);
 };
-
