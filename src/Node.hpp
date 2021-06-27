@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <map>
+#include <limits>
 
 class Node
 {
@@ -20,12 +22,11 @@ public:
     unsigned GetPrevCost() { return prevCost; }
     bool IsPrevCostWorse(unsigned newCost) { return newCost < prevCost?true:false; } //"Worse" because we need better or equal
 
-    void BondEdge(unsigned edgeID, unsigned nodeID) { edges.insert(pair<unsigned, unsigned>(nodeID, edgeID)); }
+    void BondEdge(unsigned edgeID, unsigned nodeID) { edges.insert(std::pair<unsigned, unsigned>(nodeID, edgeID)); }
 
     std::map<unsigned, unsigned> GetEdges() { return edges; } //returns map <nodeID, edgeID>
 
-    // Is this even useful for sth ? xD
-    // unsigned NodeDegree() {return neighbours.size(); }
+    std::vector<unsigned> GetEdgesIDs();
 
     ~Node() = default;
 private:

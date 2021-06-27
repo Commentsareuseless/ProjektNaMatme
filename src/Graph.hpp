@@ -27,8 +27,10 @@ public:
     Edge& GetEdge(unsigned ID);
 
     unsigned GraphRow() {return listOfNodes.size(); }
+
 private:
 
+    bool DoesConnectionExist(unsigned ID1, unsigned ID2);
     unsigned GetCostOfConnection(unsigned ID1, unsigned ID2);
 
     EdgeVec edges{};

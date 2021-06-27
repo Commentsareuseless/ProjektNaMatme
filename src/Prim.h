@@ -3,13 +3,9 @@
 #include "Graph.hpp"
 
 class Prim {
+    static bool run(Graph& graph);
 
-
-
-    static void run(Graph& graph);
-
-    private:
-
-    static unsigned getMinCostNodeID(Graph graph);
+private:
+    static unsigned getMinCostNodeID(Graph& graph);
 };
 

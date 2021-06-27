@@ -54,12 +54,6 @@ void Graph::ConnectNodes(unsigned ID1, unsigned ID2, unsigned cost)
         return;
     }
 
-    if(DoesConnectionExist(ID1, ID2))
-    {
-        LOG_error("Connection already exist! ID1=" << ID1 << " ID2=" << ID2);
-        return;
-    }
-
     edges.push_back(Edge(ID1, ID2, cost));
     GetNode(ID1).BondEdge(Edge::GetLastID(), ID2);
     GetNode(ID2).BondEdge(Edge::GetLastID(), ID1);
@@ -103,5 +97,3 @@ unsigned Graph::GetCostOfConnection(unsigned ID1, unsigned ID2) //returns cost, 
     }
     return 0; //aka false
 }
-
-

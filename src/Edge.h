@@ -13,9 +13,7 @@ public:
     unsigned GetNodeID2() { return nodeID2; }
     unsigned GetCost() { return cost; }
 
-    unsigned GetLastID() { return idGenerator - 1; }
-
-    ~Node() = default;
+    static unsigned GetLastID() { return idGenerator - 1; }
 private:
     static unsigned idGenerator;
     unsigned nodeID1;
