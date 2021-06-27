@@ -61,6 +61,8 @@ void Graph::ConnectNodes(unsigned ID1, unsigned ID2, unsigned cost)
     }
 
     edges.push_back(Edge(ID1, ID2, cost));
+    GetNode(ID1).BondEdge(Edge::GetLastID(), ID2);
+    GetNode(ID2).BondEdge(Edge::GetLastID(), ID1);
 }
 
 Node& Graph::GetNode(unsigned ID)
@@ -76,19 +78,30 @@ Node& Graph::GetNode(unsigned ID)
     return *listOfNodes.end();
 }
 
-Graph::Edge::Edge(unsigned _ID1, unsigned _ID2, unsigned _cost) :
-    node1(_ID1), node2(_ID2), cost(_cost)
-{}
-
-bool Graph::DoesConnectionExist(unsigned ID1, unsigned ID2)
+Edge& Graph::GetEdge(unsigned ID)
 {
     for(auto& edge : edges)
     {
-        if(edge.node1 == ID1 && edge.node2 == ID2)
-            return true;
-
-        if(edge.node1 == ID2 && edge.node2 == ID1)
-            return true;
+        if(edge.GetID() == ID)
+        {
+            return edge;
+        }
     }
-    return false;
+    LOG_error("GetEdge(): Invalid ID");
+    return *edges.end();
 }
+
+unsigned Graph::GetCostOfConnection(unsigned ID1, unsigned ID2) //returns cost, not existence
+{
+    for(auto edgeID : GetNode(ID1).GetEdgesIDs())
+    {
+        if(GetEdge(edgeID).GetNodeID1() == ID1 && GetEdge(edgeID).GetNodeID2() == ID2)
+            return GetEdge(edgeID).GetCost();
+
+        if(GetEdge(edgeID).GetNodeID1() == ID2 && GetEdge(edgeID).GetNodeID2() == ID1)
+            return GetEdge(edgeID).GetCost();
+    }
+    return 0; //aka false
+}
+
+

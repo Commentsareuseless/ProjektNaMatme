@@ -9,8 +9,8 @@ int main()
     NodeVec nodz = {Node(), Node(), Node()};
 
     LOG_error("Errors work!");
-    LOG_info("Info work!");
-    LOG_debug("debug work!");
+    LOG_info("Info works!");
+    LOG_debug("debug works!");
 
     Graph graf{};
 

@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Node.hpp"
+#include "Edge.h"
 
 using NodeVec = std::vector<Node>;
+using EdgeVec = std::vector<Edge>;
 
 class Graph
 {
@@ -22,17 +24,12 @@ public:
     Node& FirstNode();
     Node& LastNode();
 
+    Edge& GetEdge(unsigned ID);
+
     unsigned GraphRow() {return listOfNodes.size(); }
 private:
-    struct Edge
-    {
-        Edge(unsigned, unsigned , unsigned);
 
-        unsigned node1, node2, cost;
-    };
-    using EdgeVec = std::vector<Edge>;
-
-    bool DoesConnectionExist(unsigned ID1, unsigned ID2);
+    unsigned GetCostOfConnection(unsigned ID1, unsigned ID2);
 
     EdgeVec edges{};
     NodeVec listOfNodes{};
