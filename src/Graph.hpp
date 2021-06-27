@@ -38,4 +38,3 @@ private:
     EdgeVec edges{};
     NodeVec listOfNodes{};
 };
-
