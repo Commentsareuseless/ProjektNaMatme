@@ -1,6 +1,8 @@
 #include "Debug.hpp"
 #include "Prim.h"
 
+#include <string>
+
 bool Prim::run(Graph &graph) {
     for ( unsigned i = 0; i < graph.GraphRow(); i++) { //For each Node
         unsigned id = Prim::getMinCostNodeID(graph);
@@ -43,13 +45,13 @@ std::vector<unsigned> Prim::getIDsOfEdgesNotInMST(Graph& graph) {
 }
 
 void Prim::printEdgesNotInMST(Graph& graph) {
-    std::vector<unsigned> tmp = Prim::getIDsOfEdgesNotInMST();
+    std::vector<unsigned> tmp = Prim::getIDsOfEdgesNotInMST(graph);
     if (tmp.empty()) {
         LOG_info("Nie znaleziono autostrad spelniajacych kryteria");
         return;
     }
     LOG_info("Znaleziono autostrady spelniajace kryteria:");
     for (auto& e : tmp) {
-        LOG_info("Autostrada " + (String)graph.GetEdge(e).GetID() + " laczaca miasta " + (String)graph.GetEdge(e).GetNodeID1() + " i " + (String)graph.GetEdge(e).GetNodeID2() + " o długości " + (String)graph.GetEdge(e).GetCost())); //TODO: pls fix it :(
+        LOG_info("Autostrada " + std::to_string(graph.GetEdge(e).GetID()) + " laczaca miasta " + std::to_string(graph.GetEdge(e).GetNodeID1()) + " i " + std::to_string(graph.GetEdge(e).GetNodeID2()) + " o długości " + std::to_string(graph.GetEdge(e).GetCost())); //TODO: pls fix it :(
     }
 }
