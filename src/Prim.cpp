@@ -5,15 +5,19 @@
 
 bool Prim::run(Graph &graph) {
     for ( unsigned i = 0; i < graph.GraphRow(); i++) { //For each Node
+        LOG_debug("Prim: Node: " + std::to_string(i));
         unsigned id = Prim::getMinCostNodeID(graph);
         graph.GetNode(id).SetVisited();
-        for (auto const& e : graph.GetNode(id).GetEdges()) {
+        for (std::map<unsigned, unsigned>& e : graph.GetNode(id).GetEdges()) {
+            LOG_debug("Prim: Node: Edge: " + std::to_string(e.first) + " - " + std::to_string(e.second));
             if (!graph.GetNode(e.first).WasVisited())
             {
+                LOG_debug("Prim: Node: Edge wasn't visited");
                 if (graph.GetNode(e.first).GetPrevCost() > graph.GetNode(id).GetPrevCost() + graph.GetEdge(e.second).GetCost())
                 {
                     graph.GetNode(e.first).SetPrevID(id);
                     graph.GetNode(e.first).SetPrevCost(graph.GetNode(id).GetPrevCost() + graph.GetEdge(e.second).GetCost());
+                    LOG_debug("Prim: Node: Edge chosen");
                 }
             }
         }
