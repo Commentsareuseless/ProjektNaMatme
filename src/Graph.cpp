@@ -53,7 +53,11 @@ void Graph::ConnectNodes(unsigned ID1, unsigned ID2, unsigned cost)
         LOG_error("Given IDs are the same :(");
         return;
     }
-
+    if (GetCostOfConnection(ID1, ID2))
+    {
+        LOG_error("Edge already exists");
+        return;
+    }
     edges.push_back(Edge(ID1, ID2, cost));
     GetNode(ID1).BondEdge(Edge::GetLastID(), ID2);
     GetNode(ID2).BondEdge(Edge::GetLastID(), ID1);
