@@ -1,8 +1,9 @@
+#include "Debug.hpp"
 #include "Prim.h"
 
 bool Prim::run(Graph &graph) {
-    for ( int i = 0; i < graph.GraphRow(); i++) { //For each Node
-        unsigned id = getMinCostNodeID(graph);
+    for ( unsigned i = 0; i < graph.GraphRow(); i++) { //For each Node
+        unsigned id = Prim::getMinCostNodeID(graph);
         graph.GetNode(id).SetVisited();
         for (auto const& e : graph.GetNode(id).GetEdges()) {
             if (!graph.GetNode(e.first).WasVisited())
@@ -15,7 +16,7 @@ bool Prim::run(Graph &graph) {
             }
         }
     }
-    for ( int i = 0; i < graph.GraphRow(); i++)
+    for ( unsigned i = 0; i < graph.GraphRow(); i++)
         if (graph.GetNode(i).GetPrevCost() == UINT32_MAX)
             return false;
     return true;
@@ -24,11 +25,31 @@ bool Prim::run(Graph &graph) {
 unsigned Prim::getMinCostNodeID(Graph& graph) {
     unsigned min = UINT32_MAX, id;
 
-    for (int i = 0; i < graph.GraphRow(); i++) { //For each Node
+    for (unsigned i = 0; i < graph.GraphRow(); i++) { //For each Node
         if (!graph.GetNode(i).WasVisited() && !graph.GetNode(i).IsPrevCostWorse(min)) {
             min = graph.GetNode(i).GetPrevCost();
             id = i;
         }
     }
     return id;
+}
+
+std::vector<unsigned> Prim::getIDsOfEdgesNotInMST(Graph& graph) {
+    std::vector<unsigned> tmp;
+    for ( unsigned i = 0; i < graph.GetNumberOfEdges(); i++)
+        if(!graph.GetEdge(i).IsInMST())
+            tmp.push_back(i);
+    return tmp;
+}
+
+void Prim::printEdgesNotInMST(Graph& graph) {
+    std::vector<unsigned> tmp = Prim::getIDsOfEdgesNotInMST();
+    if (tmp.empty()) {
+        LOG_info("Nie znaleziono autostrad spelniajacych kryteria");
+        return;
+    }
+    LOG_info("Znaleziono autostrady spelniajace kryteria:");
+    for (auto& e : tmp) {
+        LOG_info("Autostrada " + (String)graph.GetEdge(e).GetID() + " laczaca miasta " + (String)graph.GetEdge(e).GetNodeID1() + " i " + (String)graph.GetEdge(e).GetNodeID2() + " o długości " + (String)graph.GetEdge(e).GetCost())); //TODO: pls fix it :(
+    }
 }

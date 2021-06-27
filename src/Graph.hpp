@@ -15,7 +15,7 @@ public:
     Graph(NodeVec&& initialNodes);
 
     void AddNode();
-    void AddNode(Node&& node) { listOfNodes.push_back(node); }
+    //void AddNode(Node&& node) { listOfNodes.push_back(node); }
     void AddNodes(NodeVec& nodes);
 
     void ConnectNodes(unsigned ID1, unsigned ID2, unsigned cost = 1);
@@ -26,11 +26,10 @@ public:
 
     Edge& GetEdge(unsigned ID);
 
-    unsigned GraphRow() {return listOfNodes.size(); }
+    unsigned GraphRow() { return listOfNodes.size(); }
+    unsigned GetNumberOfEdges() { return edges.size(); }
 
 private:
-
-    bool DoesConnectionExist(unsigned ID1, unsigned ID2);
     unsigned GetCostOfConnection(unsigned ID1, unsigned ID2);
 
     EdgeVec edges{};
