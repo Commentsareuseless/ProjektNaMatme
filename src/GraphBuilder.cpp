@@ -4,7 +4,7 @@
  * @brief This class parses txt file to create new graph
  * @version 0.1
  * @date 2021-05-16
- * 
+ *
  * @copyright Copyright (c) 2021
  */
 
@@ -15,10 +15,10 @@
 
 bool GraphBuilder::CreateGraphFromTxt(const std::string& path, Graph& out_graphToFill)
 {
-    std::ifstream fileToParse{path};
+    std::ifstream fileToParse{ path };
     std::string readLine{};
 
-    unsigned matrixRow{0}, matrixCol{0};
+    unsigned matrixRow{ 0 }, matrixCol{ 0 };
     constexpr char matrixBeginChar = '[';
     constexpr char matrixEndChar = ']';
     constexpr char separator = ' ';
@@ -74,7 +74,7 @@ bool GraphBuilder::ReadNextLine(
     std::ifstream& file,
     std::string& out_readLine)
 {
-    if(file)
+    if (file)
     {
         std::getline(file, out_readLine);
         return true;

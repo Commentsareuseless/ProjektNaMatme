@@ -65,9 +65,9 @@ void Graph::ConnectNodes(unsigned ID1, unsigned ID2, unsigned cost)
 
 Node& Graph::GetNode(unsigned ID)
 {
-    for(auto& node : listOfNodes)
+    for (auto& node : listOfNodes)
     {
-        if(node.GetID() == ID)
+        if (node.GetID() == ID)
         {
             return node;
         }
@@ -78,9 +78,9 @@ Node& Graph::GetNode(unsigned ID)
 
 Edge& Graph::GetEdge(unsigned ID)
 {
-    for(auto& edge : edges)
+    for (auto& edge : edges)
     {
-        if(edge.GetID() == ID)
+        if (edge.GetID() == ID)
         {
             return edge;
         }
@@ -91,12 +91,12 @@ Edge& Graph::GetEdge(unsigned ID)
 
 unsigned Graph::GetCostOfConnection(unsigned ID1, unsigned ID2) //returns cost, not existence
 {
-    for(auto edgeID : GetNode(ID1).GetEdgesIDs())
+    for (auto edgeID : GetNode(ID1).GetEdgesIDs())
     {
-        if(GetEdge(edgeID).GetNodeID1() == ID1 && GetEdge(edgeID).GetNodeID2() == ID2)
+        if (GetEdge(edgeID).GetNodeID1() == ID1 && GetEdge(edgeID).GetNodeID2() == ID2)
             return GetEdge(edgeID).GetCost();
 
-        if(GetEdge(edgeID).GetNodeID1() == ID2 && GetEdge(edgeID).GetNodeID2() == ID1)
+        if (GetEdge(edgeID).GetNodeID1() == ID2 && GetEdge(edgeID).GetNodeID2() == ID1)
             return GetEdge(edgeID).GetCost();
     }
     return 0; //aka false
@@ -104,14 +104,14 @@ unsigned Graph::GetCostOfConnection(unsigned ID1, unsigned ID2) //returns cost, 
 
 void Graph::printEdges() {
     LOG_debug("Edges:");
-    for(auto& e : edges) {
+    for (auto& e : edges) {
         e.print();
     }
 }
 
 void Graph::printNodes() {
     LOG_debug("Nodes:");
-    for(auto& n : listOfNodes) {
+    for (auto& n : listOfNodes) {
         n.print();
     }
 }

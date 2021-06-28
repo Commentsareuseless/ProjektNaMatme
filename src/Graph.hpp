@@ -21,8 +21,8 @@ public:
     void ConnectNodes(unsigned ID1, unsigned ID2, unsigned cost = 1);
 
     Node& GetNode(unsigned ID);
-    Node& FirstNode();
-    Node& LastNode();
+    //Node& FirstNode();
+    //Node& LastNode();
 
     Edge& GetEdge(unsigned ID);
 
