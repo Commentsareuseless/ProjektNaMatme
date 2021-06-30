@@ -2,11 +2,11 @@
 
 class Edge {
 public:
-    Edge(unsigned _ID1, unsigned _ID2, unsigned _cost) { ID = idGenerator++; nodeID1 = _ID1; nodeID2 = _ID2; cost = _cost;}
+    Edge(unsigned _ID1, unsigned _ID2, unsigned _cost) { ID = idGenerator++; nodeID1 = _ID1; nodeID2 = _ID2; cost = _cost; }
 
     unsigned GetID() const { return ID; }
 
-    void SetMST()   { inMST = true; }
+    void SetMST() { inMST = true; }
     bool IsInMST() const { return inMST; }
 
     unsigned GetNodeID1() { return nodeID1; }
@@ -18,7 +18,7 @@ public:
     void print();
 
 private:
-    static unsigned idGenerator = 0;
+    static unsigned idGenerator;
     unsigned nodeID1;
     unsigned nodeID2;
     unsigned cost;

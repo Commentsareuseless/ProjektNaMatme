@@ -18,6 +18,10 @@ public:
         const std::string& path,
         Graph& out_graphToFill);
 
+    static bool CreateGraphFromEdges(
+        const std::string& path,
+        Graph& out_graphToFill);
+
 private:
     GraphBuilder() = delete;
     GraphBuilder(GraphBuilder&) = delete;

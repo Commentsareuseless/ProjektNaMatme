@@ -1,8 +1,9 @@
-#include <cstdio>
+﻿#include <cstdio>
 
 #include "Graph.hpp"
 #include "Debug.hpp"
 #include "Prim.h"
+#include "GraphBuilder.hpp"
 
 
 int main()
@@ -13,6 +14,8 @@ int main()
 
     Graph graph{};
 
+
+    GraphBuilder::CreateGraphFromEdges("testEdges.txt", graph);
     /* test input
 
      0 --(2)--1
@@ -24,20 +27,23 @@ int main()
      root 0
 
      */
-    graph.AddNode();
-    graph.AddNode();
-    graph.AddNode();
-    graph.AddNode();
-    graph.ConnectNodes(0, 1, 2);
-    graph.ConnectNodes(1, 3, 1);
-    graph.ConnectNodes(0, 2, 1);
-    graph.ConnectNodes(1, 2, 3);
-    graph.printEdges();
-    graph.printNodes();
+    //graph.AddNode();
+    //graph.AddNode();
+    //graph.AddNode();
+    //graph.AddNode();
+    //graph.ConnectNodes(0, 1, 2);
+    //graph.ConnectNodes(1, 3, 1);
+    //graph.ConnectNodes(0, 2, 1);
+    //graph.ConnectNodes(1, 2, 3);
+    //graph.printEdges();
+    //graph.printNodes();
     graph.GetNode(0).SetPrevID(0);
     graph.GetNode(0).SetPrevCost(0);
+    graph.GetNode(0).SetRoot();
     Prim::run(graph);
     Prim::printEdgesNotInMST(graph); //expected edge 3 : node1 1 : node2 2 : cost 3
-    graph.printEdges();
     graph.printNodes();
+
+    int dummy;
+    std::cin >> dummy;
 }

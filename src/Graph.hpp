@@ -2,6 +2,7 @@
 
 #include "Node.hpp"
 #include "Edge.h"
+#include <string>
 
 using NodeVec = std::vector<Node>;
 using EdgeVec = std::vector<Edge>;
@@ -21,9 +22,6 @@ public:
     void ConnectNodes(unsigned ID1, unsigned ID2, unsigned cost = 1);
 
     Node& GetNode(unsigned ID);
-    Node& FirstNode();
-    Node& LastNode();
-
     Edge& GetEdge(unsigned ID);
 
     unsigned GraphRow() { return listOfNodes.size(); }
@@ -31,6 +29,18 @@ public:
 
     void printNodes();
     void printEdges();
+
+    std::map<std::string, unsigned> names; //Too bad!
+    //std::map<unsigned*, std::string*> reverseNames;
+
+    std::string GetNodeName(unsigned id) {
+        for (auto& const e : names)
+        {
+            if (e.second == id)
+                return e.first;
+        }
+        return "ERR";
+    }
 
 private:
     unsigned GetCostOfConnection(unsigned ID1, unsigned ID2);
