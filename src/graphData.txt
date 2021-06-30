@@ -10,8 +10,9 @@
 #  | N21 0 N23 N24 |
 #  | N31 N32 0 N34 |
 #  | N41 N42 N43 0 |
+# Macierz musi wyglądać w ten sposób, co poniżej, inaczej będą błędy
 #
 [ 0 1 1 1
-  0 0 0 1
-  1 0 0 1
-  1 1 1 0 ]
+1 0 0 1
+1 0 0 1
+1 1 1 0 ]

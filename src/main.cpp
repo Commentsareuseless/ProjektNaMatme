@@ -15,7 +15,7 @@ int main()
     Graph graph{};
 
 
-    GraphBuilder::CreateGraphFromEdges("testEdges.txt", graph);
+    GraphBuilder::CreateGraphFromTxt("src/graphData.txt", graph);
     /* test input
 
      0 --(2)--1

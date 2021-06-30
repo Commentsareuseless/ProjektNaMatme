@@ -8,7 +8,7 @@ bool Prim::run(Graph& graph) {
         LOG_debug("Prim iteration: " + std::to_string(i));
         unsigned id = Prim::getMinCostNodeID(graph);
         graph.GetNode(id).SetVisited();
-        for (auto& const e : graph.GetNode(id).GetEdges()) {
+        for (auto& e : graph.GetNode(id).GetEdges()) {
             LOG_debug("Prim: Node: " + std::to_string(id) + " Edge: n:" + std::to_string(e.first) + " e:" + std::to_string(e.second));
             if (!graph.GetNode(e.first).WasVisited())
             {

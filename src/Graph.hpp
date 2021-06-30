@@ -34,7 +34,7 @@ public:
     //std::map<unsigned*, std::string*> reverseNames;
 
     std::string GetNodeName(unsigned id) {
-        for (auto& const e : names)
+        for (auto& e : names)
         {
             if (e.second == id)
                 return e.first;
