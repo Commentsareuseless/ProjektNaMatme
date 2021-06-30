@@ -21,7 +21,7 @@ List of highways.
 Output:
 List of highways, which are not part of MST.
 
-Input format:
+Input format (look up in Raw):
 <number of edges>
 <Name of capital city>
 <Name of city 1> <Name of city 2> <Weight of edge>
