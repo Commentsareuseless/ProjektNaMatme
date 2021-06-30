@@ -15,8 +15,6 @@ public:
 
     static unsigned GetLastID() { return idGenerator - 1; }
 
-    void print();
-
 private:
     static unsigned idGenerator;
     unsigned nodeID1;

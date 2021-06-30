@@ -5,21 +5,14 @@
 
 bool Prim::run(Graph& graph) {
     for (unsigned i = 0; i < graph.GraphRow(); i++) {
-        LOG_debug("Prim iteration: " + std::to_string(i));
         unsigned id = Prim::getMinCostNodeID(graph);
         graph.GetNode(id).SetVisited();
         for (auto& e : graph.GetNode(id).GetEdges()) {
-            LOG_debug("Prim: Node: " + std::to_string(id) + " Edge: n:" + std::to_string(e.first) + " e:" + std::to_string(e.second));
-            if (!graph.GetNode(e.first).WasVisited())
+            if (!graph.GetNode(e.first).WasVisited() && (graph.GetNode(e.first).GetPrevCost() > graph.GetNode(id).GetPrevCost() + graph.GetEdge(e.second).GetCost()))
             {
-                LOG_debug("Prim: Node: Edge wasn't visited");
-                if (graph.GetNode(e.first).GetPrevCost() > graph.GetNode(id).GetPrevCost() + graph.GetEdge(e.second).GetCost())
-                {
-                    graph.GetNode(e.first).SetPrevID(id);
-                    graph.GetNode(e.first).SetPrevCost(graph.GetNode(id).GetPrevCost() + graph.GetEdge(e.second).GetCost());
-                    graph.GetNode(e.first).SetPrevEdgeID(e.second);
-                    LOG_debug("Prim: Node: Edge chosen");
-                }
+                graph.GetNode(e.first).SetPrevID(id);
+                graph.GetNode(e.first).SetPrevCost(graph.GetNode(id).GetPrevCost() + graph.GetEdge(e.second).GetCost());
+                graph.GetNode(e.first).SetPrevEdgeID(e.second);
             }
         }
         graph.printNodes();
@@ -61,6 +54,6 @@ void Prim::printEdgesNotInMST(Graph& graph) {
     }
     LOG_info("Znaleziono autostrady spelniajace kryteria:");
     for (auto& e : tmp) {
-        LOG_info("Autostrada " + std::to_string(graph.GetEdge(e).GetID()) + " laczaca miasta " + graph.GetNodeName(graph.GetEdge(e).GetNodeID1()) + " i " + graph.GetNodeName(graph.GetEdge(e).GetNodeID2()) + " o dlugosci " + std::to_string(graph.GetEdge(e).GetCost())); //TODO: pls fix it :(
+        LOG_info("Autostrada " + std::to_string(graph.GetEdge(e).GetID()) + " laczaca miasta " + std::to_string(graph.GetEdge(e).GetNodeID1()) + " i " + std::to_string(graph.GetEdge(e).GetNodeID2()) + " o dlugosci " + std::to_string(graph.GetEdge(e).GetCost()));
     }
 }

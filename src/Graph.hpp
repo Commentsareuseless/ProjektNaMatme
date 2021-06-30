@@ -16,7 +16,6 @@ public:
     Graph(NodeVec&& initialNodes);
 
     void AddNode();
-    //void AddNode(Node&& node) { listOfNodes.push_back(node); }
     void AddNodes(NodeVec& nodes);
 
     void ConnectNodes(unsigned ID1, unsigned ID2, unsigned cost = 1);
@@ -30,17 +29,16 @@ public:
     void printNodes();
     void printEdges();
 
-    std::map<std::string, unsigned> names; //Too bad!
-    //std::map<unsigned*, std::string*> reverseNames;
+    //std::map<std::string, unsigned> names; //Too bad!
 
-    std::string GetNodeName(unsigned id) {
+    /*std::string GetNodeName(unsigned id) {
         for (auto& e : names)
         {
             if (e.second == id)
                 return e.first;
         }
         return "ERR";
-    }
+    }*/
 
 private:
     unsigned GetCostOfConnection(unsigned ID1, unsigned ID2);

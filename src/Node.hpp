@@ -36,8 +36,6 @@ public:
 
     std::vector<unsigned> GetEdgesIDs();
 
-    void print();
-
     ~Node() = default;
 private:
     static unsigned idGenerator;

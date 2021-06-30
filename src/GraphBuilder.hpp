@@ -21,6 +21,12 @@ public:
         const std::string& path,
         Graph& out_graphToFill);
 
+    /*
+    static bool CreateGraphFromEdges(
+        const std::string& path,
+        Graph& graph);
+        */
+
 private:
     /**
      * @brief IDK if flags are good idea but

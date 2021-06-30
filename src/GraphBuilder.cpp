@@ -1,13 +1,3 @@
-/**
- * @file GraphBuilder.cpp
- * @author The Drim Matma Tim
- * @brief This class parses txt file to create new graph
- * @version 0.1
- * @date 2021-05-16
- * 
- * @copyright Copyright (c) 2021
- */
-
 #include "GraphBuilder.hpp"
 #include "Debug.hpp"
 
@@ -51,15 +41,6 @@ bool GraphBuilder::CreateGraphFromTxt(const std::string& path, Graph& out_graphT
             }
             flags.reset(START_OF_MATRIX);
         }
-
-        // for (int i{0}; i < rowAsNums.size(); ++i)
-        // {
-        //     if (rowAsNums[i] != -1 && rowAsNums[i] != 0)
-        //     {
-        //         out_graphToFill.ConnectNodes(numOfRow, i, rowAsNums[i]);
-        //         LOG_info("Connecting: " << numOfRow << " with " << i + numOfRow << " with cost: " << rowAsNums[i]);
-        //     }
-        // }
 
         if(flags.test(END_OF_MATRIX))
         {
@@ -134,8 +115,6 @@ unsigned GraphBuilder::StrRow2VecOfInts(
     constexpr unsigned maxNumberLength = 4;
     char nums[maxNumberLength] = {0};
 
-    // unsigned numOfValues = 0;
-    // int readVal;
     int i = 0;
     std::string token{};
     token.reserve(29);
@@ -223,3 +202,45 @@ bool GraphBuilder::isGraphValid(const std::vector<int>& graphAsVec, unsigned num
     }
     return true;
 }
+
+/*
+bool GraphBuilder::CreateGraphFromEdges(const std::string& path, Graph& graph)
+{
+    std::ifstream fileToParse{ path };
+
+    if (!fileToParse)
+    {
+        LOG_error("Could not open file! (most likely doesn't exist)");
+        return false;
+    }
+
+    int N;
+    fileToParse >> N;
+    std::string root;
+    fileToParse >> root;
+    std::string tmp1, tmp2;
+    int tmp3;
+
+    for (int i = 0; i < N; i++) {
+        fileToParse >> tmp1;
+        fileToParse >> tmp2;
+        fileToParse >> tmp3;
+        if (graph.names.count(tmp1) == 0) {
+            graph.AddNode();
+            graph.names.insert(std::pair<std::string, unsigned>(tmp1, Node::GetLastID()));
+        }
+        if (graph.names.count(tmp2) == 0) {
+            graph.AddNode();
+            graph.names.insert(std::pair<std::string, unsigned>(tmp2, Node::GetLastID()));
+        }
+        graph.ConnectNodes(graph.names.at(tmp1), graph.names.at(tmp2), tmp3);
+    }
+    fileToParse.close();
+    unsigned id = graph.names.at(root);
+    graph.GetNode(id).SetPrevID(0);
+    graph.GetNode(id).SetPrevCost(0);
+    graph.GetNode(id).SetRoot();
+
+    return true;
+}
+*/
