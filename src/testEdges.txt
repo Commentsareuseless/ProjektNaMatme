@@ -1,0 +1,6 @@
+4
+Miasto0
+Miasto0 Miasto1 2
+Miasto1 Miasto3 1
+Miasto0 Miasto2 1
+Miasto1 Miasto2 3

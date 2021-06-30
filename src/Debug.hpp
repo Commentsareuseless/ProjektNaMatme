@@ -7,7 +7,7 @@
 #define LVL_ERROR   (1 << 2)
 
 // Suppress logs by removing one of levels from this macro
-#define LOG_LEVEL (LVL_INFO | LVL_DEBUG | LVL_ERROR)
+#define LOG_LEVEL (LVL_INFO | /*LVL_DEBUG |*/ LVL_ERROR)
 
 #if LOG_LEVEL & LVL_INFO
 #   define LOG_info(message) \

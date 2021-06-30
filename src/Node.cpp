@@ -1,4 +1,7 @@
 #include "Node.hpp"
+#include "Debug.hpp"
+
+#include <string>
 
 unsigned Node::idGenerator = 0;
 
