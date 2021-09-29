@@ -28,3 +28,5 @@ Input format (look up in Raw):
 <Name of city 1> <Name of city 2> <Weight of edge>
   ...
 <Name of city 1> <Name of city 2> <Weight of edge>
+  
+Let this repo be relic of the past :)
